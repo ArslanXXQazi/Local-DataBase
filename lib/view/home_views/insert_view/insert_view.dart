@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localdatabase/controller/components/custom_text.dart';
 
 class InsertView extends StatelessWidget {
   const InsertView({super.key});
@@ -8,12 +9,7 @@ class InsertView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-            'Insert Data',
-          style: TextStyle(
-            fontSize: 20,
-          ),
-        ),
+        title: CustomText(text: 'Insert Data',fontWeight: FontWeight.bold,fontSize: 20,),
       ),
        body: Column(children: [
 
