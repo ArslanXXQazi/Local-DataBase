@@ -22,26 +22,29 @@ class _InsertViewState extends State<InsertView> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: CustomText(text: 'Insert Data',fontWeight: FontWeight.bold,fontSize: 20,),
+        title: CustomText(text: 'Insert Data',fontWeight: FontWeight.bold,fontSize: 20,color: Colors.green,),
       ),
-       body: Column(children: [
-         CustomTextfield(
-             controller:titleController ,
-             hintText: 'Enter title',
-             labelText: 'Enter title',
-         ),
-         SizedBox(height: 15),
-         CustomTextfield(
-             controller:descriptionController ,
-             hintText: 'Enter descriptions',
-             labelText: 'Enter descriptions',
-         ),
-         SizedBox(height: 15),
-         CustomButton(
-             onTap: (){},
-             text: 'Insert Data',
-         )
-       ],),
+       body: Padding(
+         padding: const EdgeInsets.symmetric(horizontal: 20),
+         child: Column(children: [
+           CustomTextfield(
+               controller:titleController ,
+               hintText: 'Enter title',
+               labelText: 'Enter title',
+           ),
+           SizedBox(height: 15),
+           CustomTextfield(
+               controller:descriptionController ,
+               hintText: 'Enter descriptions',
+               labelText: 'Enter descriptions',
+           ),
+           SizedBox(height: 15),
+           CustomButton(
+               onTap: (){},
+               text: 'Insert Data',
+           )
+         ],),
+       ),
     );
   }
 }
