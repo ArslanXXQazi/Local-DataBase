@@ -7,11 +7,16 @@ class InsertView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: CustomText(text: 'Insert Data',fontWeight: FontWeight.bold,fontSize: 20,),
       ),
        body: Column(children: [
+
+
+
 
        ],),
     );
