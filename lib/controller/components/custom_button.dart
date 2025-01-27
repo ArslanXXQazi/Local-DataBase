@@ -3,13 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:localdatabase/controller/components/custom_text.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key});
+  VoidCallback onTap;
+  String text;
+  CustomButton({super.key,required this.onTap,required this.text});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: (){},
-        child: CustomText(text: 'Add Data'),
+        onPressed:onTap,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.green,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          )
+        ),
+        child: CustomText(text: text,fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white,),
     );
   }
 }
