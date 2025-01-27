@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:localdatabase/model/model.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -36,14 +37,37 @@ class DbClass
     await db.execute(
       '''
      create table tableName(
-     colId integer primary key
-     colTitle text
-     colDescriptions text
-     colDate text
-     
+     Id integer primary key,
+     Title text,
+     Descriptions text,
      ) 
       '''
     );
   }
 
+  create(MainModel model) async
+  {
+
+    Database db= await instance.database;
+    final data={
+      'title':model.title,
+      'title':model.description,
+    };
+
+    var check=await db.insert('arslan.Db', data,);
+    if(check==null)
+      {
+        print('Data did not insert');
+      }
+    else
+      {
+        
+      }
+
+  }
 }
+
+
+
+
+
