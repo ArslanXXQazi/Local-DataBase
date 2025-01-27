@@ -10,10 +10,6 @@ class CustomTextfield extends StatelessWidget {
      required this.labelText,
    });
 
-  TextEditingController titleController=TextEditingController();
-
-  TextEditingController descriptionController=TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
