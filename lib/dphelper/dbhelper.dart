@@ -37,9 +37,9 @@ class DbClass
     await db.execute(
       '''
      create table tableName(
-     Id integer primary key,
-     Title text,
-     Descriptions text,
+     id integer primary key,
+     title text,
+     descriptions text,
      ) 
       '''
     );
@@ -51,7 +51,7 @@ class DbClass
     Database db= await instance.database;
     final data={
       'title':model.title,
-      'title':model.description,
+      'descriptions':model.description,
     };
 
     var check=await db.insert('arslan.Db', data,);
@@ -61,10 +61,34 @@ class DbClass
       }
     else
       {
-        
+        print('Data Inserted Successfully');
       }
 
   }
+
+  withoutmodel( String title, String descriptions) async
+  {
+    Database db=await instance.database;
+    final data=
+    {
+      'title': title,
+      'description': descriptions,
+    };
+
+    var check=await db.insert('arslan.Db', data);
+    if(check==null)
+      {
+        print('Data did not insert');
+      }
+    else
+    {
+      print('Data insert Successfully');
+    }
+
+  }
+
+
+
 }
 
 
