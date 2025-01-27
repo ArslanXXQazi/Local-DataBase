@@ -7,11 +7,11 @@ class DbClass
 {
   DbClass._privateConstructor();
   static final instance=DbClass._privateConstructor();
-  String tableName='table_name';
-  String colId='id';
-  String colTitle='title';
-  String colDescriptions='descriptions';
-  String colDate='date';
+  // String tableName='table_name';
+  // String colId='id';
+  // String colTitle='title';
+  // String colDescriptions='descriptions';
+  // String colDate='date';
   Database? _database;
 
   Future<Database> get database async
@@ -35,11 +35,11 @@ class DbClass
   {
     await db.execute(
       '''
-     create table $tableName(
-     $colId integer
-     $colTitle text
-     $colDescriptions text
-     $colDate text
+     create table tableName(
+     colId integer primary key
+     colTitle text
+     colDescriptions text
+     colDate text
      
      ) 
       '''
