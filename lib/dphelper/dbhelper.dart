@@ -19,16 +19,16 @@ class DbClass {
 
   _initDatabase() async {
     Directory document = await getApplicationDocumentsDirectory();
-    String path = join(document.path, 'arslanDb');
+    String path = join(document.path, 'notes');
     return await openDatabase(path, version: 1, onCreate: _onCreate);
   }
 
   _onCreate(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE arslanDb(
+      CREATE TABLE notes(
         id INTEGER PRIMARY KEY,
         title TEXT,
-        descriptions TEXT
+        description TEXT
       )
     ''');
   }
@@ -39,8 +39,7 @@ class DbClass {
       'title': model.title,
       'descriptions': model.description,
     };
-
-    var check = await db.insert('arslanDb', data);
+    var check = await db.insert('notes', data);
     if (check == null) {
       print('Data did not insert');
     } else {
@@ -50,11 +49,11 @@ class DbClass {
 
   Future<List<Map<String, dynamic>>> read() async {
     Database db = await instance.database;
-    List<Map<String, dynamic>> result = await db.query('arslanDb');
+    List<Map<String, dynamic>> result = await db.query('notes',);
     return result;
   }
 }
- 
+
 
 
 

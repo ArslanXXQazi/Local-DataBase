@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:localdatabase/controller/components/custom_button.dart';
 import 'package:localdatabase/controller/components/custom_text.dart';
 import 'package:localdatabase/controller/components/custom_textfield.dart';
+import 'package:localdatabase/dphelper/dbhelper.dart';
+import 'package:localdatabase/model/model.dart';
+import 'package:localdatabase/view/home_views/fetch_view/fetch_data_view.dart';
+import 'package:sqflite/sqflite.dart';
 
 class InsertView extends StatefulWidget {
   const InsertView({super.key});
@@ -14,6 +18,7 @@ class _InsertViewState extends State<InsertView> {
   //============================>> Controller
   TextEditingController titleController=TextEditingController();
   TextEditingController descriptionController=TextEditingController();
+  DbClass helper=DbClass.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +45,19 @@ class _InsertViewState extends State<InsertView> {
            ),
            SizedBox(height: 15),
            CustomButton(
-               onTap: (){},
+               onTap: ()
+                {  },
                text: 'Insert Data',
            )
          ],),
        ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+        FloatingActionButton(onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>FetchDataView()));
+        },child: CustomText(text: 'Fetch'),),
+      ],),
     );
   }
 }
