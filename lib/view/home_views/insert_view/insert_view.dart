@@ -19,7 +19,7 @@ class _InsertViewState extends State<InsertView> {
   TextEditingController titleController=TextEditingController();
   TextEditingController descriptionController=TextEditingController();
   DbClass helper=DbClass.instance;
-
+  bool loading=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,50 +45,57 @@ class _InsertViewState extends State<InsertView> {
                labelText: 'Enter descriptions',
            ),
            SizedBox(height: 15),
-           CustomButton(
-               onTap:() async
-                {
-                 DbClass dbClass=DbClass.instance;
-                 if(titleController.text.isEmpty)
-                 {
-                   ScaffoldMessenger.of(context).showSnackBar(
+           loading?CircularProgressIndicator(): CustomButton(
+             onTap:() async
+             {
+               loading=true;setState(() {});
+               DbClass dbClass=DbClass.instance;
+               if(titleController.text.isEmpty)
+               {
+                 loading=false;setState(() {});
+                 ScaffoldMessenger.of(context).showSnackBar(
                      SnackBar(
                        content: CustomText(text: 'Please Enter Title',color: Colors.white,),
                        duration: Duration(seconds: 2),
                        backgroundColor: Colors.red,
                      ));
+               }
+               else
+               {
+                 if(descriptionController.text=='' || descriptionController.text==null)
+                 {
+                   descriptionController.text=='Description Not Aviliable';
+                 }
+                 int check= await dbClass.createWithOutModel(
+                     title:titleController.text ,
+                     description: descriptionController.text);
+                 if(check==1)
+                 {
+                   loading=false;
+                   setState(() {
+
+                   });
+                   ScaffoldMessenger.of(context).showSnackBar(
+
+                       SnackBar(
+                         content: CustomText(text: 'Data Added Successfully',color: Colors.white,),
+                         duration: Duration(seconds: 2),
+                         backgroundColor: Colors.green,
+                       ));
                  }
                  else
-                   {
-                   if(descriptionController.text=='' || descriptionController.text==null)
-                       {
-                         descriptionController.text=='Description Not Aviliable';
-                       }
-                   int check= await dbClass.createWithOutModel(
-                       title:titleController.text ,
-                       description: descriptionController.text);
-                   if(check==1)
-                     {
-                       ScaffoldMessenger.of(context).showSnackBar(
-                           SnackBar(
-                             content: CustomText(text: 'Data Added Successfully',color: Colors.white,),
-                             duration: Duration(seconds: 2),
-                             backgroundColor: Colors.green,
-                           ));
-                     }
-                   else
-                     {
-                       ScaffoldMessenger.of(context).showSnackBar(
-                           SnackBar(
-                             content: CustomText(text: 'Data Not Added',color: Colors.white,),
-                             duration: Duration(seconds: 2),
-                             backgroundColor: Colors.red,
-                           ));
-                     }
+                 {
+                   ScaffoldMessenger.of(context).showSnackBar(
+                       SnackBar(
+                         content: CustomText(text: 'Data Not Added',color: Colors.white,),
+                         duration: Duration(seconds: 2),
+                         backgroundColor: Colors.red,
+                       ));
+                 }
 
-                   }
-                },
-               text: 'Insert Data',
+               }
+             },
+             text: 'Insert Data',
            )
          ],),
        ),

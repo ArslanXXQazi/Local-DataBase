@@ -26,6 +26,7 @@ class _FetchDataViewState extends State<FetchDataView> {
     var fetchDataList = await db.read();
     data = fetchDataList.map((noteMap) {
       return MainModel(
+          id: noteMap['id'],
           title: noteMap['title'],
           description: noteMap['description']);
     }).toList();
@@ -44,8 +45,17 @@ class _FetchDataViewState extends State<FetchDataView> {
           itemBuilder: (context,index)
           {
             return ListTile(
-              title: CustomText(text: data[index].title??'',color: Colors.red,),
-              subtitle: CustomText(text: data[index].description??'',color: Colors.green,),
+              onTap: (){
+                db.deleteData(data[index].id!);
+                setState(() {
+                  data.removeAt(index);
+                });
+              },
+              leading: CircleAvatar(
+                child: Text(data[index].id.toString()),
+              ),
+              title: CustomText(text: data[index].title??"",color: Colors.red,),
+              subtitle: CustomText(text: data[index].description??"",color: Colors.green,),
             );
           },
         ),

@@ -47,8 +47,7 @@ class DbClass {
     }
   }
 
- Future<int> createWithOutModel({ required String title, required String description}) async
- {
+ Future<int> createWithOutModel({ required String title, required String description}) async {
 
  Database db=await instance.database;
  final data={
@@ -66,13 +65,17 @@ class DbClass {
 
  }
 
-
-
   Future<List<Map<String, dynamic>>> read() async {
     Database db = await instance.database;
     List<Map<String, dynamic>> result = await db.query('notes',);
     return result;
   }
+
+  Future<int> deleteData(int id) async {
+    Database db=await instance.database;
+    return await db.delete('notes',where: 'id=?',whereArgs: [id]);
+  }
+
 }
 
 
