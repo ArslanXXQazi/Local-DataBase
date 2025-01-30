@@ -46,7 +46,9 @@ class _InsertViewState extends State<InsertView> {
            SizedBox(height: 15),
            CustomButton(
                onTap: ()
-                {  },
+                {
+                 DbClass dbClass=DbClass.instance;
+                },
                text: 'Insert Data',
            )
          ],),

@@ -33,7 +33,7 @@ class DbClass {
     ''');
   }
 
-  create(MainModel model) async {
+  createWithModel(MainModel model) async {
     Database db = await instance.database;
     final data = {
       'title': model.title,
@@ -46,6 +46,19 @@ class DbClass {
       print('Data Inserted Successfully');
     }
   }
+
+ createWithOutModel(String title,String description) async
+ {
+
+ Database db=await instance.database;
+ final data={
+   'title':title,
+   'description':description,
+ };
+
+ }
+
+
 
   Future<List<Map<String, dynamic>>> read() async {
     Database db = await instance.database;
