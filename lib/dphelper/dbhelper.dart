@@ -47,7 +47,7 @@ class DbClass {
     }
   }
 
- createWithOutModel(String title,String description) async
+ createWithOutModel({ required String title, required String description}) async
  {
 
  Database db=await instance.database;
@@ -55,6 +55,12 @@ class DbClass {
    'title':title,
    'description':description,
  };
+ var check = await db.insert('notes', data);
+ if (check == null) {
+   print('Data did not insert');
+ } else {
+   print('Data Inserted Successfully');
+ }
 
  }
 

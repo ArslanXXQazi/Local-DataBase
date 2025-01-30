@@ -48,6 +48,9 @@ class _InsertViewState extends State<InsertView> {
                onTap: ()
                 {
                  DbClass dbClass=DbClass.instance;
+                 dbClass.createWithOutModel(
+                     title: ,
+                     description: );
                 },
                text: 'Insert Data',
            )
