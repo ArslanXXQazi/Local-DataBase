@@ -45,26 +45,32 @@ class _InsertViewState extends State<InsertView> {
            ),
            SizedBox(height: 15),
            CustomButton(
-               onTap: ()
+               onTap:() async
                 {
                  DbClass dbClass=DbClass.instance;
                  if(titleController.text.isEmpty)
                  {
-                   // Error Msg
+                  
                  }
                  else
                    {
-                     dbClass.createWithOutModel(
-                       title:titleController.text ,
-                       description: descriptionController.text);
-
                    if(descriptionController.text=='' || descriptionController.text==null)
                        {
                          descriptionController.text=='Description Not Aviliable';
                        }
+                   int check= await dbClass.createWithOutModel(
+                       title:titleController.text ,
+                       description: descriptionController.text);
+                   if(check==1)
+                     {
+                       //mesg data aadddd
+                     }
+                   else
+                     {
+                       //errorr
+                     }
+
                    }
-
-
                 },
                text: 'Insert Data',
            )
