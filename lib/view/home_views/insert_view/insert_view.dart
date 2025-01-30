@@ -50,7 +50,12 @@ class _InsertViewState extends State<InsertView> {
                  DbClass dbClass=DbClass.instance;
                  if(titleController.text.isEmpty)
                  {
-                  
+                   ScaffoldMessenger.of(context).showSnackBar(
+                     SnackBar(
+                       content: CustomText(text: 'Please Enter Title',color: Colors.white,),
+                       duration: Duration(seconds: 2),
+                       backgroundColor: Colors.red,
+                     ));
                  }
                  else
                    {
