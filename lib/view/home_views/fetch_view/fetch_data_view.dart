@@ -18,8 +18,6 @@ class _FetchDataViewState extends State<FetchDataView> {
     super.initState();
     fetchData();
   }
-
-
   DbClass db = DbClass.instance;
   List <MainModel> data = [];
 
@@ -28,8 +26,8 @@ class _FetchDataViewState extends State<FetchDataView> {
     var fetchDataList = await db.read();
     data = fetchDataList.map((noteMap) {
       return MainModel(
-          title: 'title',
-          description: 'descriptions');
+          title: noteMap['title'],
+          description: noteMap['description']);
     }).toList();
     setState(() {});
   }
@@ -40,6 +38,16 @@ class _FetchDataViewState extends State<FetchDataView> {
           title: CustomText(text: 'Fetch Data View',
             fontSize: 20,
             fontWeight: FontWeight.bold,),
+        ),
+        body: ListView.builder(
+          itemCount: data.length,
+          itemBuilder: (context,index)
+          {
+            return ListTile(
+              title: CustomText(text: data[index].title??'',color: Colors.red,),
+              subtitle: CustomText(text: data[index].description??'',color: Colors.green,),
+            );
+          },
         ),
       );
     }

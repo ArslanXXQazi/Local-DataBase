@@ -30,8 +30,9 @@ class _InsertViewState extends State<InsertView> {
         title: CustomText(text: 'Insert Data',fontWeight: FontWeight.bold,fontSize: 20,color: Colors.green,),
       ),
        body: Padding(
-         padding: const EdgeInsets.symmetric(horizontal: 20),
-         child: Column(children: [
+         padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 30),
+         child: Column(
+           children: [
            CustomTextfield(
                controller:titleController ,
                hintText: 'Enter title',
@@ -68,11 +69,21 @@ class _InsertViewState extends State<InsertView> {
                        description: descriptionController.text);
                    if(check==1)
                      {
-                       //mesg data aadddd
+                       ScaffoldMessenger.of(context).showSnackBar(
+                           SnackBar(
+                             content: CustomText(text: 'Data Added Successfully',color: Colors.white,),
+                             duration: Duration(seconds: 2),
+                             backgroundColor: Colors.green,
+                           ));
                      }
                    else
                      {
-                       //errorr
+                       ScaffoldMessenger.of(context).showSnackBar(
+                           SnackBar(
+                             content: CustomText(text: 'Data Not Added',color: Colors.white,),
+                             duration: Duration(seconds: 2),
+                             backgroundColor: Colors.red,
+                           ));
                      }
 
                    }

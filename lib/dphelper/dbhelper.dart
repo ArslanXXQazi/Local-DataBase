@@ -37,7 +37,7 @@ class DbClass {
     Database db = await instance.database;
     final data = {
       'title': model.title,
-      'descriptions': model.description,
+      'description': model.description,
     };
     var check = await db.insert('notes', data);
     if (check == null) {
