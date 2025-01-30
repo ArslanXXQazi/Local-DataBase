@@ -48,9 +48,23 @@ class _InsertViewState extends State<InsertView> {
                onTap: ()
                 {
                  DbClass dbClass=DbClass.instance;
-                 dbClass.createWithOutModel(
-                     title: ,
-                     description: );
+                 if(titleController.text.isEmpty)
+                 {
+                   // Error Msg
+                 }
+                 else
+                   {
+                     dbClass.createWithOutModel(
+                       title:titleController.text ,
+                       description: descriptionController.text);
+
+                   if(descriptionController.text=='' || descriptionController.text==null)
+                       {
+                         descriptionController.text=='Description Not Aviliable';
+                       }
+                   }
+
+
                 },
                text: 'Insert Data',
            )

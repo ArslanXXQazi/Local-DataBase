@@ -47,7 +47,7 @@ class DbClass {
     }
   }
 
- createWithOutModel({ required String title, required String description}) async
+ Future<int> createWithOutModel({ required String title, required String description}) async
  {
 
  Database db=await instance.database;
@@ -58,8 +58,10 @@ class DbClass {
  var check = await db.insert('notes', data);
  if (check == null) {
    print('Data did not insert');
+   return 0;
  } else {
    print('Data Inserted Successfully');
+   return 1;
  }
 
  }
