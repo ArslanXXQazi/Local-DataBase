@@ -52,25 +52,26 @@ class _FetchDataViewState extends State<FetchDataView> {
                   color: Colors.pink.shade200,
                    borderRadius: BorderRadius.circular(10),
                  ),
-                 child: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Center(child: CustomText(text: "Student Data ",fontSize: 20,)),
-                   Row(
-                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 child: Padding(
+                   padding: const EdgeInsets.symmetric(horizontal: 10),
+                   child: Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
                      children: [
-                       CustomText(text: data[index].title??"",color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20,),
-                    IconButton(
-                        onPressed: (){
-                          db.deleteData(data[index].id!);
-                             setState(() {
-                                 data.removeAt(index);
-                               });
-                        }, icon:
-                    Icon(Icons.delete,color: Colors.red,size: 40,))
+                       Center(child: CustomText(text: "Student Data ",fontSize: 20,)),
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 15,
+                          
+                          child: CustomText(text: data[index].id.toString()),
+                        ),
+                        CustomText(text: data[index].title??"",color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20,),
+                      ],
+                    ),
+                    // Icon(Icons.delete,color: Colors.red,size: 40,),
+                    CustomText(text: data[index].description??"",color: Colors.white,fontWeight: FontWeight.normal,fontSize: 15)
                    ],),
-                   CustomText(text: data[index].description??"",color: Colors.white,fontWeight: FontWeight.normal,fontSize: 15),
-                 ],),
+                 ),
                  ),
                );
             //    ListTile(
