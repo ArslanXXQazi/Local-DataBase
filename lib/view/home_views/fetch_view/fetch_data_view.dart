@@ -56,6 +56,7 @@ class _FetchDataViewState extends State<FetchDataView> {
                    padding: const EdgeInsets.symmetric(horizontal: 10),
                    child: Column(
                      crossAxisAlignment: CrossAxisAlignment.start,
+                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                      children: [
                        Center(child: CustomText(text: "Student Data ",fontSize: 20,)),
                     Row(
@@ -74,12 +75,16 @@ class _FetchDataViewState extends State<FetchDataView> {
                         ),
                       ],
                     ),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                      Icon(Icons.delete),
-                      Icon(Icons.update),
+                     IconButton(
+                       onPressed: (){},
+                       icon:  Icon(Icons.delete,color: Colors.red,size: 30,),),
+                      SizedBox(width: 30,),
+                        IconButton(
+                          onPressed: (){},
+                          icon:  Icon(Icons.update,color: Colors.green,size: 30,),)
                     ],)
                    ],),
                  ),
