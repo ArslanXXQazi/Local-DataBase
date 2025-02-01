@@ -44,19 +44,48 @@ class _FetchDataViewState extends State<FetchDataView> {
           itemCount: data.length,
           itemBuilder: (context,index)
           {
-            return ListTile(
-              onTap: (){
-                db.deleteData(data[index].id!);
-                setState(() {
-                  data.removeAt(index);
-                });
-              },
-              leading: CircleAvatar(
-                child: Text(data[index].id.toString()),
-              ),
-              title: CustomText(text: data[index].title??"",color: Colors.red,),
-              subtitle: CustomText(text: data[index].description??"",color: Colors.green,),
-            );
+             return
+               Padding(
+                 padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                 child: Container(
+                 height:  150, decoration: BoxDecoration(
+                  color: Colors.pink.shade200,
+                   borderRadius: BorderRadius.circular(10),
+                 ),
+                 child: Column(
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: [
+                     Center(child: CustomText(text: "Student Data ",fontSize: 20,)),
+                   Row(
+                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                     children: [
+                       CustomText(text: data[index].title??"",color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20,),
+                    IconButton(
+                        onPressed: (){
+                          db.deleteData(data[index].id!);
+                             setState(() {
+                                 data.removeAt(index);
+                               });
+                        }, icon:
+                    Icon(Icons.delete,color: Colors.red,size: 40,))
+                   ],),
+                   CustomText(text: data[index].description??"",color: Colors.white,fontWeight: FontWeight.normal,fontSize: 15),
+                 ],),
+                 ),
+               );
+            //    ListTile(
+            //   onTap: (){
+            //     db.deleteData(data[index].id!);
+            //     setState(() {
+            //       data.removeAt(index);
+            //     });
+            //   },
+            //   leading: CircleAvatar(
+            //     child: Text(data[index].id.toString()),
+            //   ),
+            //   title: CustomText(text: data[index].title??"",color: Colors.red,),
+            //   subtitle: CustomText(text: data[index].description??"",color: Colors.green,),
+            // );
           },
         ),
       );
