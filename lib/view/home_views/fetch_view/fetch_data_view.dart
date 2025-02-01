@@ -96,6 +96,7 @@ class _FetchDataViewState extends State<FetchDataView> {
                  ),
                  ),
                );
+
             //    ListTile(
             //   onTap: (){
             //     db.deleteData(data[index].id!);
