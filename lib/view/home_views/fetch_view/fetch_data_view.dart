@@ -48,13 +48,13 @@ class _FetchDataViewState extends State<FetchDataView> {
                Padding(
                  padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                  child: Container(
-                 height:  250,
+                 height:  230,
                    decoration: BoxDecoration(
                   color: Colors.pink.shade200,
                    borderRadius: BorderRadius.circular(10),
                  ),
                  child: Padding(
-                   padding: const EdgeInsets.symmetric(horizontal: 10),
+                   padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                    child: Column(
                      children: [
                        CustomText(text: "Student Data ",fontSize: 20,color: Colors.yellow,fontWeight: FontWeight.bold,),
@@ -70,23 +70,28 @@ class _FetchDataViewState extends State<FetchDataView> {
                       color: Colors.green,
                     ),
                        SizedBox(height: 10,),
-                    //===============================>>>ROw For delete and Update
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                     IconButton(
-                       onPressed: (){
-                             db.deleteData(data[index].id!);
-                             setState(() {
-                               data.removeAt(index);
-                             });
-                       },
-                       icon:  Icon(Icons.delete,color: Colors.red,size: 30,),),
-                      SizedBox(width: 10,),
-                        IconButton(
-                          onPressed: (){},
-                          icon:  Icon(Icons.update,color: Colors.green,size: 30,),)
-                    ],)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                        Row(children: [
+                          CustomText(text: 'Delete Data',color: Colors.white,fontWeight: FontWeight.bold,),
+                          IconButton(
+                            onPressed: (){
+                              db.deleteData(data[index].id!);
+                              setState(() {
+                                data.removeAt(index);
+                              });
+                            },
+                            icon:  Icon(Icons.delete,color: Colors.red,size: 30,),),
+                        ],),
+                        Row(children: [
+                          CustomText(text: 'Update Data',color: Colors.white,fontWeight: FontWeight.bold,),
+                          IconButton(
+                            onPressed: (){},
+                            icon:  Icon(Icons.update,color: Colors.green,size: 30,),),
+                        ],),
+                      ],)
+
                    ],),
                  ),
                  ),
