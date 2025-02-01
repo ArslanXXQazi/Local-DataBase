@@ -62,13 +62,13 @@ class _FetchDataViewState extends State<FetchDataView> {
                       children: [
                         CircleAvatar(
                           radius: 15,
-                          
                           child: CustomText(text: data[index].id.toString()),
                         ),
+                        SizedBox(width: 10,),
                         CustomText(text: data[index].title??"",color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20,),
                       ],
                     ),
-                    // Icon(Icons.delete,color: Colors.red,size: 40,),
+                    SizedBox(height: 10,),
                     CustomText(text: data[index].description??"",color: Colors.white,fontWeight: FontWeight.normal,fontSize: 15)
                    ],),
                  ),
