@@ -65,11 +65,22 @@ class _FetchDataViewState extends State<FetchDataView> {
                           child: CustomText(text: data[index].id.toString()),
                         ),
                         SizedBox(width: 10,),
-                        CustomText(text: data[index].title??"",color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20,),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CustomText(text: data[index].title??"",color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20,),
+                            CustomText(text: data[index].description??"",color: Colors.white,fontWeight: FontWeight.normal,fontSize: 15),
+                          ],
+                        ),
                       ],
                     ),
-                    SizedBox(height: 10,),
-                    CustomText(text: data[index].description??"",color: Colors.white,fontWeight: FontWeight.normal,fontSize: 15)
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                      Icon(Icons.delete),
+                      Icon(Icons.update),
+                    ],)
                    ],),
                  ),
                  ),
