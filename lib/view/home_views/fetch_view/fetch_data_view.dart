@@ -48,37 +48,28 @@ class _FetchDataViewState extends State<FetchDataView> {
                Padding(
                  padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                  child: Container(
-                 height:  150, decoration: BoxDecoration(
+                 height:  250,
+                   decoration: BoxDecoration(
                   color: Colors.pink.shade200,
                    borderRadius: BorderRadius.circular(10),
                  ),
                  child: Padding(
                    padding: const EdgeInsets.symmetric(horizontal: 10),
                    child: Column(
-                     crossAxisAlignment: CrossAxisAlignment.start,
-                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                      children: [
+                       CustomText(text: "Student Data ",fontSize: 20,color: Colors.yellow,fontWeight: FontWeight.bold,),
                        CircleAvatar(
-
+                         radius: 30,
                        ),
-                       Center(child: CustomText(text: "Student Data ",fontSize: 20,color: Colors.yellow,fontWeight: FontWeight.bold,)),
-                    Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 15,
-                          backgroundColor: Colors.blueAccent.shade200,
-                          child: CustomText(text: data[index].id.toString(),color: Colors.white,),
-                        ),
-                        SizedBox(width: 10,),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomText(text: data[index].title??"",color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20,),
-                            CustomText(text: data[index].description??"",color: Colors.white,fontWeight: FontWeight.normal,fontSize: 15),
-                          ],
-                        ),
-                      ],
+                       CustomText(text: data[index].title??"",color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20,),
+                       CustomText(text: data[index].description??"",color: Colors.white,fontWeight: FontWeight.normal,fontSize: 15),
+                       SizedBox(height: 10,),
+                    Container(
+                      height: 1,
+                      width: double.infinity,
+                      color: Colors.green,
                     ),
+                       SizedBox(height: 10,),
                     //===============================>>>ROw For delete and Update
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
