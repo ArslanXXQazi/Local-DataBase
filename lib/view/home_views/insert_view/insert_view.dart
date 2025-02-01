@@ -45,7 +45,8 @@ class _InsertViewState extends State<InsertView> {
                labelText: 'Enter descriptions',
            ),
            SizedBox(height: 15),
-           loading?CircularProgressIndicator(): CustomButton(
+           loading?CircularProgressIndicator():
+           CustomButton(
              onTap:() async
              {
                loading=true;setState(() {});
@@ -94,6 +95,8 @@ class _InsertViewState extends State<InsertView> {
                  }
 
                }
+               titleController.clear();
+               descriptionController.clear();
              },
              text: 'Insert Data',
            )
