@@ -74,7 +74,6 @@ class _FetchDataViewState extends State<FetchDataView> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-
                         //================================>>>>Row For Delete Button
                         Row(children: [
                           CustomText(text: 'Delete Data',color: Colors.white,fontWeight: FontWeight.bold,),
