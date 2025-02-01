@@ -58,6 +58,9 @@ class _FetchDataViewState extends State<FetchDataView> {
                      crossAxisAlignment: CrossAxisAlignment.start,
                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                      children: [
+                       CircleAvatar(
+
+                       ),
                        Center(child: CustomText(text: "Student Data ",fontSize: 20,color: Colors.yellow,fontWeight: FontWeight.bold,)),
                     Row(
                       children: [
@@ -76,21 +79,18 @@ class _FetchDataViewState extends State<FetchDataView> {
                         ),
                       ],
                     ),
+                    //===============================>>>ROw For delete and Update
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                     Column(
-                       children: [
-                         IconButton(
-                           onPressed: (){
-                                 db.deleteData(data[index].id!);
-                                 setState(() {
-                                   data.removeAt(index);
-                                 });
-                           },
-                           icon:  Icon(Icons.delete,color: Colors.red,size: 30,),),
-                       ],
-                     ),
+                     IconButton(
+                       onPressed: (){
+                             db.deleteData(data[index].id!);
+                             setState(() {
+                               data.removeAt(index);
+                             });
+                       },
+                       icon:  Icon(Icons.delete,color: Colors.red,size: 30,),),
                       SizedBox(width: 10,),
                         IconButton(
                           onPressed: (){},
