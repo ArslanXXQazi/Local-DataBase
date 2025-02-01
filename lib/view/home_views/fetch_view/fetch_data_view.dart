@@ -50,7 +50,7 @@ class _FetchDataViewState extends State<FetchDataView> {
                  child: Container(
                  height:  230,
                    decoration: BoxDecoration(
-                  color: Colors.pink.shade200,
+                  color: Colors.pink.shade100,
                    borderRadius: BorderRadius.circular(10),
                  ),
                  child: Padding(
@@ -60,6 +60,7 @@ class _FetchDataViewState extends State<FetchDataView> {
                        CustomText(text: "Student Data ",fontSize: 20,color: Colors.yellow,fontWeight: FontWeight.bold,),
                        CircleAvatar(
                          radius: 30,
+                         backgroundImage: AssetImage('assets/arslan.jpg'),
                        ),
                        CustomText(text: data[index].title??"",color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20,),
                        CustomText(text: data[index].description??"",color: Colors.white,fontWeight: FontWeight.normal,fontSize: 15),
