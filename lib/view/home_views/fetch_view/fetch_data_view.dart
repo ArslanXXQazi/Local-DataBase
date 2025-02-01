@@ -63,6 +63,7 @@ class _FetchDataViewState extends State<FetchDataView> {
                       children: [
                         CircleAvatar(
                           radius: 15,
+                          backgroundColor: Colors.blueAccent.shade200,
                           child: CustomText(text: data[index].id.toString()),
                         ),
                         SizedBox(width: 10,),
@@ -79,9 +80,14 @@ class _FetchDataViewState extends State<FetchDataView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                      IconButton(
-                       onPressed: (){},
+                       onPressed: (){
+                             db.deleteData(data[index].id!);
+                             setState(() {
+                               data.removeAt(index);
+                             });
+                       },
                        icon:  Icon(Icons.delete,color: Colors.red,size: 30,),),
-                      SizedBox(width: 30,),
+                      SizedBox(width: 10,),
                         IconButton(
                           onPressed: (){},
                           icon:  Icon(Icons.update,color: Colors.green,size: 30,),)
