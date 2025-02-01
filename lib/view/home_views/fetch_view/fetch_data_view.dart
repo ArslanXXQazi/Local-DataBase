@@ -58,13 +58,13 @@ class _FetchDataViewState extends State<FetchDataView> {
                      crossAxisAlignment: CrossAxisAlignment.start,
                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                      children: [
-                       Center(child: CustomText(text: "Student Data ",fontSize: 20,)),
+                       Center(child: CustomText(text: "Student Data ",fontSize: 20,color: Colors.yellow,fontWeight: FontWeight.bold,)),
                     Row(
                       children: [
                         CircleAvatar(
                           radius: 15,
                           backgroundColor: Colors.blueAccent.shade200,
-                          child: CustomText(text: data[index].id.toString()),
+                          child: CustomText(text: data[index].id.toString(),color: Colors.white,),
                         ),
                         SizedBox(width: 10,),
                         Column(
@@ -79,14 +79,18 @@ class _FetchDataViewState extends State<FetchDataView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                     IconButton(
-                       onPressed: (){
-                             db.deleteData(data[index].id!);
-                             setState(() {
-                               data.removeAt(index);
-                             });
-                       },
-                       icon:  Icon(Icons.delete,color: Colors.red,size: 30,),),
+                     Column(
+                       children: [
+                         IconButton(
+                           onPressed: (){
+                                 db.deleteData(data[index].id!);
+                                 setState(() {
+                                   data.removeAt(index);
+                                 });
+                           },
+                           icon:  Icon(Icons.delete,color: Colors.red,size: 30,),),
+                       ],
+                     ),
                       SizedBox(width: 10,),
                         IconButton(
                           onPressed: (){},
