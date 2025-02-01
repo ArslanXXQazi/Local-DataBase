@@ -73,6 +73,8 @@ class _FetchDataViewState extends State<FetchDataView> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+
+                        //================================>>>>Row For Delete Button
                         Row(children: [
                           CustomText(text: 'Delete Data',color: Colors.white,fontWeight: FontWeight.bold,),
                           IconButton(
@@ -84,6 +86,7 @@ class _FetchDataViewState extends State<FetchDataView> {
                             },
                             icon:  Icon(Icons.delete,color: Colors.red,size: 30,),),
                         ],),
+                          //================================>>>>Row For Update Button
                         Row(children: [
                           CustomText(text: 'Update Data',color: Colors.white,fontWeight: FontWeight.bold,),
                           IconButton(
