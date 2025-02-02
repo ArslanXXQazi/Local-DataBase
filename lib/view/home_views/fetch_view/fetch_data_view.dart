@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:localdatabase/controller/components/custom_text.dart';
 import 'package:localdatabase/dphelper/dbhelper.dart';
 import 'package:localdatabase/model/model.dart';
+import 'package:localdatabase/view/home_views/update_view/update_view.dart';
 
 class FetchDataView extends StatefulWidget {
   const FetchDataView({super.key});
@@ -90,7 +92,9 @@ class _FetchDataViewState extends State<FetchDataView> {
                         Row(children: [
                           CustomText(text: 'Update Data',color: Colors.white,fontWeight: FontWeight.bold,),
                           IconButton(
-                            onPressed: (){},
+                            onPressed: (){
+                              Navigator.push(context, CupertinoPageRoute(builder: (context)=>UpdateView()));
+                            },
                             icon:  Icon(Icons.update,color: Colors.green,size: 30,),),
                         ],),
                       ],)
