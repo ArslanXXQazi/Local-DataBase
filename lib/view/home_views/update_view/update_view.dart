@@ -20,7 +20,7 @@ class _UpdateViewState extends State<UpdateView> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: CustomText(text: 'Insert Data',fontWeight: FontWeight.bold,fontSize: 20,color: Colors.green,),
+        title: CustomText(text: 'Update Data',fontWeight: FontWeight.bold,fontSize: 20,color: Colors.green,),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 30),
