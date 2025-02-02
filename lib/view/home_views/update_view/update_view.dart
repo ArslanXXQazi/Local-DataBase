@@ -5,10 +5,10 @@ import 'package:localdatabase/controller/components/custom_textfield.dart';
 import 'package:localdatabase/dphelper/dbhelper.dart';
 
 class UpdateView extends StatefulWidget {
-
-  String id;
-
-  UpdateView({super.key,required this.id});
+  int id;
+  String title;
+  String description;
+  UpdateView({super.key,required this.id,required this.title,required this.description});
 
   @override
   State<UpdateView> createState() => _UpdateViewState();
@@ -48,7 +48,7 @@ class _UpdateViewState extends State<UpdateView> {
             CustomButton(
               onTap:() async
              {
-               helper.updateData(id, title: title, description: description)
+               helper.updateData(widget.id, title: widget.title, description: widget.description);
              },
               text: 'Update Data',
             )

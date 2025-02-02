@@ -93,7 +93,11 @@ class _FetchDataViewState extends State<FetchDataView> {
                           CustomText(text: 'Update Data',color: Colors.white,fontWeight: FontWeight.bold,),
                           IconButton(
                             onPressed: (){
-                              Navigator.push(context, CupertinoPageRoute(builder: (context)=>UpdateView(id: data[index].id!,)));
+                              Navigator.push(context, CupertinoPageRoute(builder: (context)=>UpdateView(
+                                id: data[index].id!,
+                                title: data[index].title??"",
+                                description: data[index].description??"",
+                              )));
                             },
                             icon:  Icon(Icons.update,color: Colors.green,size: 30,),),
                         ],),
