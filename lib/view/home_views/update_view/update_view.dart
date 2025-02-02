@@ -54,7 +54,15 @@ class _UpdateViewState extends State<UpdateView> {
             CustomButton(
               onTap:() async
              {
-            await helper.updateData(widget.id, title: widget.title, description: widget.description);
+               loading=true;
+               setState(() {
+
+               });
+                await helper.updateData(
+                    widget.id,
+                    title: titleController.text,
+                    description: descriptionController.text
+                );
              },
               text: 'Update Data',
             )
