@@ -15,12 +15,18 @@ class UpdateView extends StatefulWidget {
 }
 
 class _UpdateViewState extends State<UpdateView> {
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    titleController.text=widget.title;
+    descriptionController.text=widget.description;
+  }
   @override
  bool  loading =false;
  DbClass helper=DbClass.instance;
-
   TextEditingController titleController=TextEditingController();
   TextEditingController descriptionController=TextEditingController();
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -48,7 +54,7 @@ class _UpdateViewState extends State<UpdateView> {
             CustomButton(
               onTap:() async
              {
-               helper.updateData(widget.id, title: widget.title, description: widget.description);
+            await helper.updateData(widget.id, title: widget.title, description: widget.description);
              },
               text: 'Update Data',
             )
