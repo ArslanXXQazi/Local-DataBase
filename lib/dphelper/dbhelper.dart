@@ -30,7 +30,12 @@ class DbClass {
         title TEXT,
         description TEXT
       )
-    ''');
+    '''
+
+
+
+
+    );
   }
 
   createWithModel(MainModel model) async {
@@ -74,6 +79,28 @@ class DbClass {
   Future<int> deleteData(int id) async {
     Database db=await instance.database;
     return await db.delete('notes',where: 'id=?',whereArgs: [id]);
+  }
+
+
+  Future<int> updateData(int id, {required String title, required String description}) async {
+    Database db = await instance.database;
+    final data = {
+      'title': title,
+      'description': description,
+    };
+    int result = await
+    db.update(
+      'notes',
+      data,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+    if (result > 0) {
+      print('Data Updated Successfully');
+    } else {
+      print('Data Update Failed');
+    }
+    return result;
   }
 
 }
