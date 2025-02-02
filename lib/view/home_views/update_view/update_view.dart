@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:localdatabase/controller/components/custom_text.dart';
+import 'package:localdatabase/controller/components/custom_button.dart';
+import 'package:localdatabase/controller/components/custom_text.dart'
+import 'package:localdatabase/controller/components/custom_textfield.dart';;
 
-class UpdateView extends StatelessWidget {
+class UpdateView extends StatefulWidget {
   const UpdateView({super.key});
 
   @override
+  State<UpdateView> createState() => _UpdateViewState();
+}
+
+class _UpdateViewState extends State<UpdateView> {
+  @override
+ bool loading=false;
+  TextEditingController titleController=TextEditingController();
+  TextEditingController descriptionController=TextEditingController();
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -31,57 +41,8 @@ class UpdateView extends StatelessWidget {
             loading?CircularProgressIndicator():
             CustomButton(
               onTap:() async
-              {
-                loading=true;setState(() {});
-                DbClass dbClass=DbClass.instance;
-                if(titleController.text.isEmpty)
-                {
-                  loading=false;setState(() {});
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: CustomText(text: 'Please Enter Title',color: Colors.white,),
-                        duration: Duration(seconds: 2),
-                        backgroundColor: Colors.red,
-                      ));
-                }
-                else
-                {
-                  if(descriptionController.text=='' || descriptionController.text==null)
-                  {
-                    descriptionController.text=='Description Not Aviliable';
-                  }
-                  int check= await dbClass.createWithOutModel(
-                      title:titleController.text ,
-                      description: descriptionController.text);
-                  if(check==1)
-                  {
-                    loading=false;
-                    setState(() {
-
-                    });
-                    ScaffoldMessenger.of(context).showSnackBar(
-
-                        SnackBar(
-                          content: CustomText(text: 'Data Added Successfully',color: Colors.white,),
-                          duration: Duration(seconds: 2),
-                          backgroundColor: Colors.green,
-                        ));
-                  }
-                  else
-                  {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: CustomText(text: 'Data Not Added',color: Colors.white,),
-                          duration: Duration(seconds: 2),
-                          backgroundColor: Colors.red,
-                        ));
-                  }
-
-                }
-                titleController.clear();
-                descriptionController.clear();
-              },
-              text: 'Insert Data',
+             {},
+              text: 'Update Data',
             )
           ],),
       ),
