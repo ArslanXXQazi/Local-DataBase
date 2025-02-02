@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:localdatabase/controller/components/custom_button.dart';
-import 'package:localdatabase/controller/components/custom_text.dart'
-import 'package:localdatabase/controller/components/custom_textfield.dart';;
+import 'package:localdatabase/controller/components/custom_text.dart';
+import 'package:localdatabase/controller/components/custom_textfield.dart';
 
 class UpdateView extends StatefulWidget {
   const UpdateView({super.key});
@@ -12,7 +12,7 @@ class UpdateView extends StatefulWidget {
 
 class _UpdateViewState extends State<UpdateView> {
   @override
- bool loading=false;
+ bool  loading =false;
   TextEditingController titleController=TextEditingController();
   TextEditingController descriptionController=TextEditingController();
   Widget build(BuildContext context) {
