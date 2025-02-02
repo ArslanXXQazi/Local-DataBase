@@ -13,116 +13,146 @@ class FetchDataView extends StatefulWidget {
 }
 
 class _FetchDataViewState extends State<FetchDataView> {
+  DbClass db = DbClass.instance;
+  List<MainModel> data = [];
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fetchData();
   }
-  DbClass db = DbClass.instance;
-  List <MainModel> data = [];
 
-  fetchData() async
-  {
+  fetchData() async {
     var fetchDataList = await db.read();
-    data = fetchDataList.map((noteMap) {
-      return MainModel(
-          id: noteMap['id'],
-          title: noteMap['title'],
-          description: noteMap['description']);
-    }).toList();
-    setState(() {});
+    setState(() {
+      data = fetchDataList
+          .map((noteMap) => MainModel(
+        id: noteMap['id'],
+        title: noteMap['title'],
+        description: noteMap['description'],
+      ))
+          .toList();
+    });
   }
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: CustomText(text: 'Fetch Data View',
-            fontSize: 20,
-            fontWeight: FontWeight.bold,),
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: CustomText(
+          text: 'Fetch Data View',
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
         ),
-        body: ListView.builder(
-          itemCount: data.length,
-          itemBuilder: (context,index)
-          {
-             return
-               Padding(
-                 padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                 child: Container(
-                 height:  230,
-                   decoration: BoxDecoration(
-                  color: Colors.pink.shade100,
-                   borderRadius: BorderRadius.circular(10),
-                 ),
-                 child: Padding(
-                   padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-                   child: Column(
-                     children: [
-                       CustomText(text: "Student Data ",fontSize: 20,color: Colors.yellow,fontWeight: FontWeight.bold,),
-                       CircleAvatar(
-                         radius: 30,
-                         backgroundImage: AssetImage('assets/arslan.jpg'),
-                       ),
-                       CustomText(text: data[index].title??"",color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20,),
-                       CustomText(text: data[index].description??"",color: Colors.white,fontWeight: FontWeight.normal,fontSize: 15),
-                       SizedBox(height: 10,),
-                    Container(
-                      height: 1,
-                      width: double.infinity,
-                      color: Colors.green,
+      ),
+      body: data.isEmpty
+          ? Center(child: CircularProgressIndicator())
+          : ListView.builder(
+        itemCount: data.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding:
+            const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Container(
+              height: 230,
+              decoration: BoxDecoration(
+                color: Colors.pink.shade100,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  children: [
+                    CustomText(
+                      text: "Student Data",
+                      fontSize: 20,
+                      color: Colors.yellow,
+                      fontWeight: FontWeight.bold,
                     ),
-                       SizedBox(height: 10,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                        //================================>>>>Row For Delete Button
-                        Row(children: [
-                          CustomText(text: 'Delete Data',color: Colors.white,fontWeight: FontWeight.bold,),
-                          IconButton(
-                            onPressed: (){
-                              db.deleteData(data[index].id!);
-                              setState(() {
-                                data.removeAt(index);
-                              });
-                            },
-                            icon:  Icon(Icons.delete,color: Colors.red,size: 30,),),
-                        ],),
-                          //================================>>>>Row For Update Button
-                        Row(children: [
-                          CustomText(text: 'Update Data',color: Colors.white,fontWeight: FontWeight.bold,),
-                          IconButton(
-                            onPressed: (){
-                              Navigator.push(context, CupertinoPageRoute(builder: (context)=>UpdateView(
-                                id: data[index].id!,
-                                title: data[index].title??"",
-                                description: data[index].description??"",
-                              )));
-                            },
-                            icon:  Icon(Icons.update,color: Colors.green,size: 30,),),
-                        ],),
-                      ],)
-
-                   ],),
-                 ),
-                 ),
-               );
-
-            //    ListTile(
-            //   onTap: (){
-            //     db.deleteData(data[index].id!);
-            //     setState(() {
-            //       data.removeAt(index);
-            //     });
-            //   },
-            //   leading: CircleAvatar(
-            //     child: Text(data[index].id.toString()),
-            //   ),
-            //   title: CustomText(text: data[index].title??"",color: Colors.red,),
-            //   subtitle: CustomText(text: data[index].description??"",color: Colors.green,),
-            // );
-          },
-        ),
-      );
-    }
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage('assets/arslan.jpg'),
+                    ),
+                    CustomText(
+                      text: data[index].title ?? "",
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                    CustomText(
+                      text: data[index].description ?? "",
+                      color: Colors.white,
+                      fontSize: 15,
+                    ),
+                    SizedBox(height: 10),
+                    Divider(color: Colors.green),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            CustomText(
+                              text: 'Delete Data',
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                db.deleteData(data[index].id!);
+                                setState(() {
+                                  data.removeAt(index);
+                                });
+                              },
+                              icon: Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                                size: 30,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            CustomText(
+                              text: 'Update Data',
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            IconButton(
+                              onPressed: () async {
+                                bool result = await Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                        builder: (context) => UpdateView(
+                                          id: data[index].id!,
+                                          title:
+                                          data[index].title ?? "",
+                                          description: data[index]
+                                              .description ??
+                                              "",
+                                        )));
+                                if (result == true) {
+                                  fetchData();
+                                }
+                              },
+                              icon: Icon(
+                                Icons.update,
+                                color: Colors.green,
+                                size: 30,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
   }
+}
